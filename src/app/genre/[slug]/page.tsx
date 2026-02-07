@@ -12,7 +12,7 @@ type GenrePageProps = {
   };
 };
 
-export function GenrePage({ params }: GenrePageProps) {
+export default function GenrePage({ params }: GenrePageProps) {
   const genreLabel = params.slug.replace(/-/g, " ");
   const normalizedSlug = params.slug.toLowerCase();
 
@@ -21,20 +21,20 @@ export function GenrePage({ params }: GenrePageProps) {
   );
 
   return (
-    <div className="space-y-6 pb-32">
+    <div className="space-y-6 bg-slate-50 px-4 py-6 pb-36">
       <header className="space-y-4">
         <Link
           href="/search"
           className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back
+          Retour
         </Link>
         <div>
           <p className="text-xs font-semibold uppercase text-slate-500">
             Genre
           </p>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-3xl font-bold">
             {`Tout le son ${genreLabel}`}
           </h1>
         </div>
@@ -47,12 +47,12 @@ export function GenrePage({ params }: GenrePageProps) {
       ) : (
         <div className="grid grid-cols-2 gap-4">
           {artists.map((artist) => (
-            <Card key={artist.id} className="p-4">
+            <Card key={artist.id} className="rounded-3xl p-4">
               <Link
                 href={`/artist/${artist.id}`}
                 className="flex flex-col items-start gap-3"
               >
-                <Avatar className="h-16 w-16">
+                <Avatar className="h-16 w-16 rounded-2xl">
                   <AvatarImage src={artist.image} alt={artist.name} />
                   <AvatarFallback>
                     {artist.name
