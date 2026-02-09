@@ -6,6 +6,8 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { usePlayerStore } from "../../store/usePlayerStore";
 
+type PlanId = "basic" | "standard" | "premium";
+
 export default function SubscriptionPage() {
   const router = useRouter();
   const selectedPlan = usePlayerStore((state) => state.selectedPlan);
@@ -37,7 +39,9 @@ export default function SubscriptionPage() {
           <Card
             key={plan.id}
             className={`rounded-3xl border-2 bg-slate-900 shadow-md ${
-              selectedPlan === plan.id ? borderByPlan[plan.id] : "border-white/10"
+              selectedPlan === (plan.id as PlanId)
+                ? borderByPlan[plan.id]
+                : "border-white/10"
             }`}
           >
             <CardContent className="space-y-4 p-5">
@@ -60,7 +64,7 @@ export default function SubscriptionPage() {
               <Button
                 className={`w-full rounded-full text-base font-semibold ${buttonByPlan[plan.id]}`}
                 onClick={() => {
-                  setSelectedPlan(plan.id);
+                  setSelectedPlan(plan.id as PlanId);
                   router.push("/onboarding");
                 }}
               >
