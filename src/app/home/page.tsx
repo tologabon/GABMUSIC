@@ -11,7 +11,7 @@ const TOP_TRACKS = [
   {
     id: "track-1",
     title: "Libreville Nights",
-    artist: "Sandy Okey",
+    artist: "Emma'a",
     cover: "/artists/sandy-okey.jpg",
     year: "2023",
   },
@@ -55,7 +55,7 @@ export default function HomePage() {
         <p className="text-sm font-semibold uppercase tracking-wide text-slate-400">
           Accueil
         </p>
-        <h1 className="text-4xl font-bold text-slate-900">Salut, Gill</h1>
+        <h1 className="text-4xl font-bold text-white">Salut, Gill</h1>
       </header>
 
       <section className="space-y-3">
@@ -111,7 +111,7 @@ export default function HomePage() {
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">
+                  <p className="text-sm font-semibold text-white">
                     {track.title}
                   </p>
                   <p className="text-xs text-slate-400">Par {track.artist}</p>

@@ -13,6 +13,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/ca
 export function ProfilePage() {
   const router = useRouter();
   const likedTracksCount = usePlayerStore((state) => state.likedTracks.length);
+  const selectedPlan = usePlayerStore((state) => state.selectedPlan);
+
+  const buttonByPlan: Record<string, string> = {
+    basic: "bg-green-500 hover:bg-green-600 active:bg-green-700",
+    standard: "bg-yellow-400 text-black hover:bg-yellow-500 active:bg-yellow-600",
+    premium: "bg-blue-500 hover:bg-blue-600 active:bg-blue-700",
+  };
+
+  const outlineByPlan: Record<string, string> = {
+    basic: "border border-green-500 text-green-500 hover:bg-green-500/10",
+    standard: "border border-yellow-400 text-yellow-400 hover:bg-yellow-400/10",
+    premium: "border border-blue-500 text-blue-500 hover:bg-blue-500/10",
+  };
 
   const handleLogout = React.useCallback(() => {
     usePlayerStore.persist.clearStorage();
@@ -45,7 +58,10 @@ export function ProfilePage() {
           <p className="text-sm text-slate-600">Pack Standard</p>
         </CardHeader>
         <CardContent>
-          <Button asChild className="w-full">
+          <Button
+            asChild
+            className={`w-full rounded-full text-base font-semibold ${buttonByPlan[selectedPlan]}`}
+          >
             <Link href="/subscription">Modifier mon abonnement</Link>
           </Button>
         </CardContent>
@@ -90,7 +106,11 @@ export function ProfilePage() {
             </span>
             <input type="checkbox" className="h-4 w-4 accent-blue-600" />
           </label>
-          <Button variant="outline" className="w-full" onClick={handleLogout}>
+          <Button
+            variant="outline"
+            className={`w-full rounded-full text-base font-semibold ${outlineByPlan[selectedPlan]}`}
+            onClick={handleLogout}
+          >
             <LogOut className="mr-2 h-4 w-4" />
             Déconnexion
           </Button>

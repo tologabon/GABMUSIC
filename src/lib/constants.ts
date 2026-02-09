@@ -1,7 +1,7 @@
 export const GABONESE_ARTISTS = [
   {
     id: "sandy-1",
-    name: "Sandy Okey",
+    name: "Emma'a",
     image: "/artists/sandy-okey.jpg",
     genre: "Afrobeat",
   },
@@ -41,19 +41,19 @@ export const SUBSCRIPTION_PLANS = [
   {
     id: "basic",
     name: "Basic",
-    price: "Free",
+    price: "Gratuit",
     description: "Ads supported streaming",
   },
   {
     id: "standard",
     name: "Standard",
-    price: "$4.99/mo",
+    price: "500 FCFA/mois",
     description: "Ad-free streaming",
   },
   {
     id: "premium",
     name: "Premium",
-    price: "$7.99/mo",
+    price: "1000 FCFA/mois",
     description: "Offline + high quality",
   },
 ];

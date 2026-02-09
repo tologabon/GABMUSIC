@@ -18,6 +18,7 @@ type PlayerState = {
   volume: number;
   isFullPlayerOpen: boolean;
   queue: Track[];
+  selectedPlan: "basic" | "standard" | "premium";
   likedTracks: Track[];
   setTrack: (track: Track) => void;
   togglePlay: () => void;
@@ -26,6 +27,7 @@ type PlayerState = {
   setDuration: (time: number) => void;
   setVolume: (volume: number) => void;
   toggleLike: (track: Track) => void;
+  setSelectedPlan: (plan: "basic" | "standard" | "premium") => void;
   toggleFullPlayer: () => void;
   nextTrack: () => void;
   previousTrack: () => void;
@@ -41,6 +43,7 @@ export const usePlayerStore = create<PlayerState>()(
       volume: 1,
       isFullPlayerOpen: false,
       queue: [],
+      selectedPlan: "standard",
       likedTracks: [],
       setTrack: (track) =>
         set((state) => {
@@ -65,6 +68,7 @@ export const usePlayerStore = create<PlayerState>()(
             : [...state.likedTracks, track],
         }));
       },
+      setSelectedPlan: (plan) => set(() => ({ selectedPlan: plan })),
       toggleFullPlayer: () =>
         set((state) => ({ isFullPlayerOpen: !state.isFullPlayerOpen })),
       nextTrack: () => {
@@ -106,7 +110,10 @@ export const usePlayerStore = create<PlayerState>()(
     }),
     {
       name: "gabmusic-liked-tracks",
-      partialize: (state) => ({ likedTracks: state.likedTracks }),
+      partialize: (state) => ({
+        likedTracks: state.likedTracks,
+        selectedPlan: state.selectedPlan,
+      }),
     }
   )
 );

@@ -9,11 +9,13 @@ export default function LoginPage() {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center bg-slate-50 px-4 py-6 pb-36">
-      <Card className="w-full rounded-3xl">
+    <div className="flex min-h-screen items-center bg-black px-4 py-6 pb-36 text-white">
+      <Card className="w-full rounded-3xl border border-white/10 bg-slate-900">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold">Connexion</CardTitle>
-          <p className="text-sm text-slate-500">
+          <CardTitle className="text-3xl font-bold text-white">
+            Connexion
+          </CardTitle>
+          <p className="text-sm text-white/70">
             Connecte-toi pour découvrir les artistes gabonais.
           </p>
         </CardHeader>
@@ -36,7 +38,7 @@ export default function LoginPage() {
             <Button
               type="button"
               variant="outline"
-              className="w-full rounded-full text-base font-semibold"
+              className="w-full rounded-full text-base font-semibold border-white/40 text-white hover:bg-white/10"
               onClick={() => router.push("/subscription")}
             >
               Continuer en tant qu'invité

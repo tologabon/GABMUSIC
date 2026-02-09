@@ -5,19 +5,26 @@ import { useRouter } from "next/navigation";
 import { GABONESE_ARTISTS } from "../../lib/constants";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
 import { cn } from "../../lib/utils";
+import { usePlayerStore } from "../../store/usePlayerStore";
 
 export default function OnboardingPage() {
   const router = useRouter();
   const [selected, setSelected] = React.useState<string[]>([]);
+  const selectedPlan = usePlayerStore((state) => state.selectedPlan);
+
+  const buttonByPlan: Record<string, string> = {
+    basic: "bg-green-500 hover:bg-green-600 active:bg-green-700",
+    standard: "bg-yellow-400 text-black hover:bg-yellow-500 active:bg-yellow-600",
+    premium: "bg-blue-500 hover:bg-blue-600 active:bg-blue-700",
+  };
 
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-2xl font-bold">Pick your favorites</h1>
+        <h1 className="text-2xl font-bold">Choisis tes favoris</h1>
         <p className="text-sm text-slate-600">
-          Select the artists you want on your homepage.
+          Sélectionne les artistes que tu veux sur ton accueil.
         </p>
       </header>
 
@@ -42,16 +49,23 @@ export default function OnboardingPage() {
               }}
             >
               <div className="flex items-center gap-3">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={artist.image} alt={artist.name} />
-                  <AvatarFallback>
-                    {artist.name
-                      .split(" ")
-                      .map((part) => part[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </AvatarFallback>
-                </Avatar>
+                <div className="h-12 w-12 overflow-hidden rounded-2xl bg-slate-200">
+                  {artist.image ? (
+                    <img
+                      src={artist.image}
+                      alt={artist.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center text-sm font-semibold text-slate-500">
+                      {artist.name
+                        .split(" ")
+                        .map((part) => part[0])
+                        .join("")
+                        .slice(0, 2)}
+                    </div>
+                  )}
+                </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-900">
                     {artist.name}
@@ -64,8 +78,11 @@ export default function OnboardingPage() {
         })}
       </div>
 
-      <Button className="w-full" onClick={() => router.push("/home")}>
-        Continue
+      <Button
+        className={`w-full rounded-full text-base font-semibold ${buttonByPlan[selectedPlan]}`}
+        onClick={() => router.push("/home")}
+      >
+        Continuer
       </Button>
     </div>
   );

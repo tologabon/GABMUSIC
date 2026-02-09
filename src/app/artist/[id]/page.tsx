@@ -76,7 +76,7 @@ export default function ArtistPage() {
       : MOCK_TRACKS;
 
   return (
-    <div className="space-y-6 bg-slate-50 px-4 py-6 pb-36">
+    <div className="space-y-6 bg-slate-950 px-4 py-6 pb-36 text-white">
       <Link
         href="/home"
         className="inline-flex items-center text-sm font-semibold text-blue-600"
@@ -84,7 +84,7 @@ export default function ArtistPage() {
         Retour
       </Link>
 
-      <Card className="rounded-3xl p-6">
+      <Card className="rounded-3xl border border-white/10 bg-slate-900 p-6">
         <div className="flex flex-col gap-5">
           <div className="h-40 w-40 overflow-hidden rounded-3xl bg-slate-200">
             {artist.image ? (
@@ -100,23 +100,23 @@ export default function ArtistPage() {
             )}
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-3xl font-bold text-white">
               {artist.name}
             </h1>
-            <p className="text-sm text-slate-500">{artist.genre}</p>
+            <p className="text-sm text-white/70">{artist.genre}</p>
           </div>
         </div>
       </Card>
 
       <section className="space-y-3">
-        <h2 className="text-3xl font-bold text-slate-900">Titres Populaires</h2>
+        <h2 className="text-3xl font-bold text-white">Titres Populaires</h2>
         <div className="space-y-4">
           {tracks.map((track) => {
             const isLiked = likedTracks.some((item) => item.id === track.id);
             return (
               <div
                 key={track.id}
-                className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3"
+                className="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-900 px-4 py-3"
               >
                 <div
                   className="flex cursor-pointer items-center gap-4"
@@ -137,10 +137,10 @@ export default function ArtistPage() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-slate-900">
+                    <p className="text-sm font-semibold text-white">
                       {track.title}
                     </p>
-                    <p className="text-xs text-slate-400">Par {track.artist}</p>
+                    <p className="text-xs text-white/60">Par {track.artist}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -150,7 +150,7 @@ export default function ArtistPage() {
                     aria-label={
                     isLiked ? "Retirer des favoris" : "Ajouter aux favoris"
                   }
-                  className="text-slate-400 transition hover:text-red-500"
+                    className="text-white/60 transition hover:text-red-400"
                 >
                   <Heart
                     className={
@@ -160,9 +160,9 @@ export default function ArtistPage() {
                     }
                   />
                 </button>
-                <span className="text-xs text-slate-500">
-                  {track.duration}
-                </span>
+                  <span className="text-xs text-white/60">
+                    {track.duration}
+                  </span>
               </div>
             </div>
           );

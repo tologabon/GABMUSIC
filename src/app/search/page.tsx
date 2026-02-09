@@ -30,16 +30,16 @@ export default function SearchPage() {
   }, [searchQuery]);
 
   return (
-    <div className="space-y-6 bg-slate-50 px-4 py-6 pb-36">
+    <div className="space-y-6 bg-black px-4 py-6 pb-36 text-white">
       <header className="space-y-2">
         <h1 className="text-3xl font-bold">Recherche</h1>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-white/70">
           Rechercher des artistes ou des sons
         </p>
       </header>
 
       <div className="relative">
-        <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60" />
         <Input
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
@@ -50,20 +50,16 @@ export default function SearchPage() {
 
       {!searchQuery && (
         <section className="space-y-3">
-          <h2 className="text-3xl font-bold text-slate-900">Top Genres</h2>
+          <h2 className="text-3xl font-bold text-white">Top Genres</h2>
           <div className="grid grid-cols-2 gap-4">
             {GENRES.map((genre) => (
-              <Link
-                key={genre.id}
-                href={`/genre/${genre.id}`}
-                className="block"
-              >
+              <div key={genre.id} className="block">
                 <Card
-                  className={`flex h-24 items-center justify-center rounded-3xl border-none shadow-sm ${genre.color}`}
+                  className={`flex h-24 items-center justify-center rounded-3xl border border-white/10 shadow-sm ${genre.color}`}
                 >
                   <span className="text-sm font-semibold">{genre.label}</span>
                 </Card>
-              </Link>
+              </div>
             ))}
           </div>
         </section>
@@ -71,9 +67,9 @@ export default function SearchPage() {
 
       {searchQuery && (
         <section className="space-y-3">
-          <h2 className="text-3xl font-bold text-slate-900">Résultats</h2>
+          <h2 className="text-3xl font-bold text-white">Résultats</h2>
           {results.length === 0 ? (
-            <p className="text-sm text-slate-500">Aucun résultat trouvé</p>
+            <p className="text-sm text-white/70">Aucun résultat trouvé</p>
           ) : (
             <div className="space-y-3">
               {results.map((artist) => {
@@ -82,7 +78,7 @@ export default function SearchPage() {
                   <Link
                     key={artist.id}
                     href={`/artist/${artist.id}`}
-                    className="flex w-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-3 text-left transition hover:border-blue-200 cursor-pointer hover:opacity-80"
+                    className="flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-slate-900 p-3 text-left transition hover:border-white/30 cursor-pointer hover:opacity-80"
                   >
                     <div className="h-12 w-12 overflow-hidden rounded-2xl bg-slate-200">
                       {artist.image ? (
@@ -98,10 +94,10 @@ export default function SearchPage() {
                       )}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <p className="text-sm font-semibold text-white">
                         {artist.name}
                       </p>
-                      <p className="text-xs text-slate-500">{artist.genre}</p>
+                      <p className="text-xs text-white/70">{artist.genre}</p>
                     </div>
                   </Link>
                 );
