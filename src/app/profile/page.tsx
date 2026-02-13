@@ -47,8 +47,8 @@ export function ProfilePage() {
           <AvatarFallback className="text-base">GF</AvatarFallback>
         </Avatar>
         <div>
-          <h1 className="text-2xl font-bold">Gabon Fan</h1>
-          <Badge>Fan vérifié 241</Badge>
+          <h1 className="text-2xl font-bold">İdagha Gill</h1>
+          <Badge>online</Badge>
         </div>
       </header>
 
