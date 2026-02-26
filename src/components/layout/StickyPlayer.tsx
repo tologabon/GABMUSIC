@@ -11,10 +11,17 @@ export function StickyPlayer() {
   const isPlaying = usePlayerStore((state) => state.isPlaying);
   const togglePlay = usePlayerStore((state) => state.togglePlay);
   const toggleFullPlayer = usePlayerStore((state) => state.toggleFullPlayer);
+  const selectedPlan = usePlayerStore((state) => state.selectedPlan);
   const duration = usePlayerStore((state) => state.duration);
   const currentTime = usePlayerStore((state) => state.currentTime);
   const setDuration = usePlayerStore((state) => state.setDuration);
   const setCurrentTime = usePlayerStore((state) => state.setProgress);
+
+  const playButtonByPlan: Record<string, string> = {
+    basic: "bg-green-500 text-white",
+    standard: "bg-yellow-400 text-black",
+    premium: "bg-blue-500 text-white",
+  };
 
   const resolvedSrc =
     currentTrack?.src ||
@@ -91,7 +98,10 @@ export function StickyPlayer() {
                 event.stopPropagation();
                 togglePlay();
               }}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-900"
+              className={cn(
+                "flex h-9 w-9 items-center justify-center rounded-full",
+                playButtonByPlan[selectedPlan]
+              )}
               aria-label={isPlaying ? "Pause" : "Play"}
               disabled={!currentTrack}
             >
