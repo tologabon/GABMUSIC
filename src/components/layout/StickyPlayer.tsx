@@ -61,7 +61,7 @@ export function StickyPlayer() {
       <div className="fixed bottom-0 left-0 right-0 z-40">
         <div
           className={cn(
-            "mx-4 mb-20 h-16 rounded-full bg-slate-800/95 text-white shadow-xl backdrop-blur-md",
+            "mx-4 mb-20 h-16 rounded-full bg-black text-white shadow-xl backdrop-blur-md",
             currentTrack ? "opacity-100" : "opacity-80"
           )}
         >
