@@ -12,8 +12,6 @@ export function StickyPlayer() {
   const togglePlay = usePlayerStore((state) => state.togglePlay);
   const toggleFullPlayer = usePlayerStore((state) => state.toggleFullPlayer);
   const selectedPlan = usePlayerStore((state) => state.selectedPlan);
-  const duration = usePlayerStore((state) => state.duration);
-  const currentTime = usePlayerStore((state) => state.currentTime);
   const setDuration = usePlayerStore((state) => state.setDuration);
   const setCurrentTime = usePlayerStore((state) => state.setProgress);
 
@@ -43,25 +41,6 @@ export function StickyPlayer() {
       audio.pause();
     }
   }, [isPlaying, resolvedSrc]);
-
-  const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const time = Number(event.target.value);
-    const audio = audioRef.current;
-    if (audio) {
-      audio.currentTime = time;
-    }
-    setCurrentTime(time);
-  };
-
-  const formatTime = (time: number) => {
-    if (!Number.isFinite(time)) return "00:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
-      2,
-      "0"
-    )}`;
-  };
 
   return (
     <>
@@ -111,21 +90,6 @@ export function StickyPlayer() {
                 <Play className="h-4 w-4" />
               )}
             </button>
-          </div>
-          <div className="px-4 pb-2">
-            <input
-              type="range"
-              min={0}
-              max={duration || 0}
-              value={currentTime}
-              onChange={handleSeek}
-              className="w-full accent-blue-500"
-              disabled={!currentTrack}
-            />
-            <div className="mt-1 flex items-center justify-between text-[10px] text-white/50">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
           </div>
         </div>
       </div>
